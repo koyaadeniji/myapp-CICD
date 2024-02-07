@@ -13,7 +13,7 @@ pipeline {
     stage ('Publish to ECR') {
           steps {
              withEnv(["AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY}", "AWS_DEFAULT_REGION=${env.AWS_DEFAULT_REGION}"]) {
-                sh 'docker login -u AWS -p $(aws ecr get-login-password --region eu-west-1) ${PRIVATE_REPO_TAG}'
+                sh 'docker login -u AWS -p $(aws ecr get-login-password --region eu-east-1) ${PRIVATE_REPO_TAG}'
                 sh 'docker build -t ${PRIVATE_APP_NAME}:${VERSION} .'
                 sh 'docker tag ${PRIVATE_APP_NAME}:${VERSION} ${PRIVATE_REPO_TAG}/${PRIVATE_APP_NAME}:${VERSION}'
                 sh 'docker push ${PRIVATE_REPO_TAG}/${PRIVATE_APP_NAME}:${VERSION}'
@@ -31,7 +31,7 @@ pipeline {
         
     stage ('Deploy to Cluster') {
             steps {
-                sh 'aws eks update-kubeconfig --region eu-west-1 --name ekscluster'
+                sh 'aws eks update-kubeconfig --region eu-east-1 --name kkcluster'
                 sh 'envsubst < ${WORKSPACE}/deploy.yaml | ./kubectl apply -f -'
             }
     }
