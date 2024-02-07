@@ -1,6 +1,5 @@
 pipeline {
   agent any
-
   environment {
     REPOSITORY_TAG     = "${PRIVATE_REPO_TAG}/${PRIVATE_APP_NAME}:${VERSION}"
     PRIVATE_REPO_TAG   = "442502181371.dkr.ecr.us-east-1.amazonaws.com"
