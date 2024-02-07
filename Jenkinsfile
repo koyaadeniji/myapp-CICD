@@ -6,7 +6,6 @@ pipeline {
     PRIVATE_APP_NAME   = "myapp-ci/cd"
     VERSION            = "${BUILD_ID}"
   }
-
   stages {
 
     stage ('Publish to ECR') {
