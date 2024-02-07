@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: myapp-ci/cd
+  name: myapp-cicd
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: awsprime
-  namespace: myapp-ci/cd
+  namespace: myapp-cicd
 spec:
   selector:
     matchLabels:
@@ -31,7 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: awsprime-svc
-  namespace: myapp-ci/cd
+  namespace: myapp-cicd
 
 spec:
  
